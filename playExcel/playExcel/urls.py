@@ -17,14 +17,14 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-
+import os
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^kryptos', include('kryptos.urls')),
     url(r'^echo', include('echo.urls')),
     url(r'^', include('common.urls')),
-    
-]   
+
+]
 if settings.DEBUG:
-    urlpatterns +=   static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns +=   static(settings.STATIC_ROOT, document_root=settings.BASE_DIR)
