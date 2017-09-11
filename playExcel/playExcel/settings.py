@@ -37,13 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
-
+    
     'common',
     'kryptos',
     'echo',
-    'django_ace',
     'hashinclude',
+
+    'corsheaders',
+    'django_ace',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -173,3 +175,13 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgi_redis.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 6379)],
+        },
+        "ROUTING": "playExcel.routing.channel_routing",
+    },
+}
